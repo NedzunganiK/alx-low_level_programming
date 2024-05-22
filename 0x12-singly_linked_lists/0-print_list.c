@@ -1,28 +1,34 @@
-#include "lists.h"
+#include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
+#include "lists.h"
 
 /**
- * print_list - Prints all the elements of a list_t list.
- * @h: The list_t list.
+ * main - check the code for ALX School students.
  *
- * Return: The number of nodes in h.
+ * Return: Always 0.
  */
-
-size_t print_list(const list_t *h)
+int main(void)
 {
-	size_t nodes = 0;
+    list_t *head;
+    list_t *new;
+    list_t hello = {"World", 5, NULL};
+    size_t n;
 
-	while (h)
-	{
-		if (h->str == NULL)
-			printf("[0] (nil)\n");
-
-		else
-			printf("[%d] %s\n", h->len, h->str);
-
-		nodes++;
-		h = h->next;
-	}
-
-	return (nodes);
+    head = &hello;
+    new = malloc(sizeof(list_t));
+    if (new == NULL)
+    {
+        printf("Error\n");
+        return (1);
+    }
+    new->str = strdup("Hello");
+    new->len = 5;
+    new->next = head;
+    head = new;
+    n = list_len(head);
+    printf("-> %lu elements\n", n);
+    free(new->str);
+    free(new);
+    return (0);
 }

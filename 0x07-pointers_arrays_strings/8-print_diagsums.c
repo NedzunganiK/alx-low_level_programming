@@ -1,18 +1,29 @@
-#include "main.h"
-/**
- * print_chessboard - Entry point
- * @a: array
- * Return: Always 0 (Success)
- */
-void print_chessboard(char (*a)[8])
-{
-	int i;
-	int j;
+#include "holberton.h"
+#include <stdio.h>
 
-	for (i = 0; i < 8; i++)
+/**
+ * print_diagsums - Prints the sum of the two diagonals
+ *                  of a square matrix of integers.
+ * @a: The matrix of integers.
+ * @size: The size of the matrix.
+ */
+void print_diagsums(int *a, int size)
+{
+	int index, sum1 = 0, sum2 = 0;
+
+	for (index = 0; index < size; index++)
 	{
-		for (j = 0; j < 8; j++)
-			_putchar(a[i][j]);
-		_putchar('\n');
+		sum1 += a[index];
+		a += size;
 	}
+
+	a -= size;
+
+	for (index = 0; index < size; index++)
+	{
+		sum2 += a[index];
+		a -= size;
+	}
+
+	printf("%d, %d\n", sum1, sum2);
 }
